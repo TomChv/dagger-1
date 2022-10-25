@@ -1,6 +1,5 @@
 ## What is Dagger?
 
-
 Dagger is a CI/CD engine that is **programmable** and **container-native**.
 
 * **Programmable**: develop your CI/CD pipelines as code, in the same programming language as your application.
