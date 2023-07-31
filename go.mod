@@ -71,7 +71,7 @@ require (
 	github.com/opencontainers/runc v1.1.7
 	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8
 	github.com/prometheus/procfs v0.11.0
-	github.com/rs/zerolog v1.29.1
+	github.com/rs/zerolog v1.30.0
 	github.com/shurcooL/graphql v0.0.0-20220606043923-3cf50f8a0a29
 	github.com/vito/progrock v0.7.1-0.20230628234355-c8ce2c2e3c24
 	github.com/vito/vt100 v0.1.2
