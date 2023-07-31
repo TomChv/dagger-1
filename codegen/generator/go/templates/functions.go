@@ -8,9 +8,10 @@ import (
 	"text/template"
 	"unicode"
 
+	"github.com/iancoleman/strcase"
+
 	"github.com/dagger/dagger/codegen/generator"
 	"github.com/dagger/dagger/codegen/introspection"
-	"github.com/iancoleman/strcase"
 )
 
 var (
