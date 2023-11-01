@@ -52,7 +52,7 @@ require (
 	golang.org/x/crypto v0.11.0
 	golang.org/x/mod v0.12.0
 	golang.org/x/sync v0.3.0
-	golang.org/x/sys v0.10.0
+	golang.org/x/sys v0.12.0
 	golang.org/x/term v0.10.0
 	google.golang.org/grpc v1.55.0
 	oss.terrastruct.com/d2 v0.4.0
@@ -65,13 +65,13 @@ require (
 	github.com/icholy/replace v0.6.0
 	github.com/jackpal/gateway v1.0.7
 	github.com/mackerelio/go-osstat v0.2.4
-	github.com/mattn/go-isatty v0.0.18
+	github.com/mattn/go-isatty v0.0.19
 	github.com/muesli/termenv v0.15.1
 	github.com/nxadm/tail v1.4.8
 	github.com/opencontainers/runc v1.1.7
 	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8
 	github.com/prometheus/procfs v0.11.0
-	github.com/rs/zerolog v1.29.1
+	github.com/rs/zerolog v1.31.0
 	github.com/shurcooL/graphql v0.0.0-20220606043923-3cf50f8a0a29
 	github.com/vito/progrock v0.7.1-0.20230628234355-c8ce2c2e3c24
 	github.com/vito/vt100 v0.1.2
