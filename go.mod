@@ -24,7 +24,7 @@ require (
 	github.com/dagger/graphql v0.0.0-20230601100125-137fc3a90735
 	github.com/dagger/graphql-go-tools v0.0.0-20230418214324-32c52f390881
 	github.com/docker/distribution v2.8.2+incompatible
-	github.com/google/go-containerregistry v0.15.2
+	github.com/google/go-containerregistry v0.17.0
 	github.com/google/uuid v1.3.0
 	github.com/iancoleman/strcase v0.3.0
 	// https://github.com/moby/buildkit/commit/8a28fe6bc051989cc1a5c2312a73d8da17d8a435
@@ -34,7 +34,7 @@ require (
 	github.com/opencontainers/runtime-spec v1.1.0-rc.2
 	github.com/pelletier/go-toml v1.9.5
 	github.com/pkg/errors v0.9.1
-	github.com/sirupsen/logrus v1.9.0
+	github.com/sirupsen/logrus v1.9.1
 	github.com/spf13/cobra v1.7.0
 	github.com/stretchr/testify v1.8.3
 	github.com/tonistiigi/fsutil v0.0.0-20230407161946-9e7a6df48576
