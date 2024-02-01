@@ -16,7 +16,7 @@ beartype==0.15.0
     # via -r -
 black==23.7.0
     # via -r -
-cattrs==23.1.2
+cattrs==23.2.3
     # via -r -
 certifi==2023.7.22
     # via
