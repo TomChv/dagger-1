@@ -18,7 +18,7 @@ black==23.7.0
     # via -r -
 cattrs==23.1.2
     # via -r -
-certifi==2023.7.22
+certifi==2024.2.2
     # via
     #   httpcore
     #   httpx
