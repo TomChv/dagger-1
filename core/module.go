@@ -58,6 +58,9 @@ type Module struct {
 	// The module's interfaces
 	InterfaceDefs []*TypeDef `field:"true" name:"interfaces" doc:"Interfaces served by this module."`
 
+	// The module's scalars
+	ScalarDefs []*TypeDef `field:"true" name:"scalars" doc:"Scalars served by this module."`
+
 	// InstanceID is the ID of the initialized module.
 	InstanceID *call.ID
 }
@@ -652,7 +655,7 @@ func (mod *Module) WithDescription(desc string) *Module {
 	return mod
 }
 
-func (mod *Module) WithObject(ctx context.Context, def *TypeDef) (*Module, error) {
+func (mod *Module) WithObject(ctx context.Context, def *TypeDef) (*Module, error) {	
 	mod = mod.Clone()
 	if !def.AsObject.Valid {
 		return nil, fmt.Errorf("expected object type def, got %s: %+v", def.Kind, def)
@@ -699,6 +702,32 @@ func (mod *Module) WithInterface(ctx context.Context, def *TypeDef) (*Module, er
 	}
 
 	mod.InterfaceDefs = append(mod.InterfaceDefs, def)
+	return mod, nil
+}
+
+func (mod *Module) WithScalar(ctx context.Context, def *TypeDef) (*Module, error) {
+	mod = mod.Clone()
+	if !def.AsScalar.Valid {
+		return nil, fmt.Errorf("expected scalar type def, got %s: %+v", def.Kind, def)
+	}
+
+	// skip validation+namespacing for module objects being constructed by SDK with* calls
+	// they will be validated when merged into the real final module
+	if mod.Deps != nil {
+		if err := mod.validateTypeDef(ctx, def); err != nil {
+			return nil, fmt.Errorf("failed to validate type def: %w", err)
+		}
+	}
+
+	if mod.NameField != "" {
+		def = def.Clone()
+		if err := mod.namespaceTypeDef(ctx, def); err != nil {
+			return nil, fmt.Errorf("failed to namespace type def: %w", err)
+		}
+	}
+
+	mod.ScalarDefs = append(mod.ScalarDefs, def)
+
 	return mod, nil
 }
 

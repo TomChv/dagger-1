@@ -22,7 +22,7 @@ export type ScanResult = {
  * @param files List of TypeScript files to introspect.
  * @param moduleName The name of the module to introspect.
  */
-export function scan(files: string[], moduleName = ""): DaggerModule {
+export function scan(files: string[], moduleName = "", moduleDir = "."): DaggerModule {
   if (files.length === 0) {
     throw new Error("no files to introspect found")
   }
@@ -31,7 +31,7 @@ export function scan(files: string[], moduleName = ""): DaggerModule {
   const program = ts.createProgram(files, { experimentalDecorators: true })
   const checker = program.getTypeChecker()
 
-  const module = new DaggerModule(checker, moduleName, program.getSourceFiles())
+  const module = new DaggerModule(checker, moduleName, moduleDir, program.getSourceFiles())
   if (Object.keys(module.objects).length === 0) {
     throw new Error("no objects found in the module")
   }

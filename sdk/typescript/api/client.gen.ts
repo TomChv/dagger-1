@@ -5725,6 +5725,44 @@ export class Module_ extends BaseClient {
   }
 
   /**
+   * Scalars served by this module.
+   */
+  scalars = async (): Promise<TypeDef[]> => {
+    type scalars = {
+      id: TypeDefID
+    }
+
+    const response: Awaited<scalars[]> = await computeQuery(
+      [
+        ...this._queryTree,
+        {
+          operation: "scalars",
+        },
+        {
+          operation: "id",
+        },
+      ],
+      await this._ctx.connection(),
+    )
+
+    return response.map(
+      (r) =>
+        new TypeDef(
+          {
+            queryTree: [
+              {
+                operation: "loadTypeDefFromID",
+                args: { id: r.id },
+              },
+            ],
+            ctx: this._ctx,
+          },
+          r.id,
+        ),
+    )
+  }
+
+  /**
    * The SDK used by this module. Either a name of a builtin SDK or a module source ref string pointing to the SDK's implementation.
    */
   sdk = async (): Promise<string> => {

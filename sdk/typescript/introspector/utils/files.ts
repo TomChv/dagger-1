@@ -19,6 +19,10 @@ export async function listFiles(dir = "."): Promise<string[]> {
         return []
       }
 
+      if (!filepath.startsWith(dir)) {
+        return []
+      }
+
       const stat = fs.statSync(filepath)
 
       if (stat.isDirectory()) {

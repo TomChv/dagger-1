@@ -50,9 +50,70 @@
               "kind": "STRING_KIND"
             }
           }
+        },
+        "custom": {
+          "arguments": {},
+          "description": "",
+          "name": "custom",
+          "returnType": {
+            "kind": "SCALAR_KIND",
+            "name": "Custom"
+          }
+        },
+        "fromCustom": {
+          "arguments": {
+            "custom": {
+              "description": "",
+              "isNullable": false,
+              "isOptional": false,
+              "isVariadic": false,
+              "name": "custom",
+              "type": {
+                "kind": "SCALAR_KIND",
+                "name": "Custom"
+              }
+            }
+          },
+          "description": "",
+          "name": "fromCustom",
+          "returnType": {
+            "kind": "STRING_KIND"
+          }
+        },
+        "fromCustoms": {
+          "arguments": {
+            "customs": {
+              "description": "",
+              "isNullable": false,
+              "isOptional": false,
+              "isVariadic": false,
+              "name": "customs",
+              "type": {
+                "kind": "LIST_KIND",
+                "typeDef": {
+                  "kind": "SCALAR_KIND",
+                  "name": "Custom"
+                }
+              }
+            }
+          },
+          "description": "",
+          "name": "fromCustoms",
+          "returnType": {
+            "kind": "LIST_KIND",
+            "typeDef": {
+              "kind": "STRING_KIND"
+            }
+          }
         }
       },
       "properties": {}
     }
-  }
+  },
+  "scalars": [
+    {
+      "description": "A custom scalar",
+      "name": "Custom"
+    }
+  ]
 }

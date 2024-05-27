@@ -523,6 +523,17 @@ func (s *moduleSchema) moduleWithInterface(ctx context.Context, mod *core.Module
 	return mod.WithInterface(ctx, def.Self)
 }
 
+func (s *moduleSchema) moduleWithScalar(ctx context.Context, mod *core.Module, args struct {
+	Scalar core.TypeDefID
+}) (_ *core.Module, rerr error) {
+	def, err := args.Scalar.Load(ctx, s.dag)
+	if err != nil {
+		return nil, err
+	}
+
+	return mod.WithScalar(ctx, def.Self)
+}
+
 func (s *moduleSchema) currentModuleName(
 	ctx context.Context,
 	curMod *core.CurrentModule,

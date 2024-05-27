@@ -2,38 +2,51 @@ import ts from "typescript"
 
 import { isObject, toPascalCase } from "../utils.js"
 import { DaggerObject, DaggerObjects } from "./object.js"
+import { Scalar } from "./scalar.js"
 
 export class DaggerModule {
   private checker: ts.TypeChecker
 
-  private readonly files: ts.SourceFile[]
+  private _objects: DaggerObjects = {}
+
+  private _scalars: Scalar[] = []
 
   public name: string
 
   constructor(
     checker: ts.TypeChecker,
     name = "",
+    dir = "",
     files: readonly ts.SourceFile[],
   ) {
     this.checker = checker
-    this.files = files.filter((file) => !file.isDeclarationFile)
     this.name = toPascalCase(name)
-  }
 
-  get objects(): DaggerObjects {
-    const objects: DaggerObjects = {}
+    for (const file of files) {
+      if (file.isDeclarationFile || !file.fileName.startsWith(dir)) {
+        continue
+      }
 
-    for (const file of this.files) {
       ts.forEachChild(file, (node) => {
+        // Handle class declaration
         if (ts.isClassDeclaration(node) && isObject(node)) {
           const object = new DaggerObject(this.checker, file, node)
 
-          objects[object.name] = object
+          this._objects[object.name] = object
+        }
+
+        // Handle type alias declaration
+        if (ts.isTypeAliasDeclaration(node)) {
+          const scalar = new Scalar(this.checker, node)
+
+          this._scalars.push(scalar)
         }
       })
     }
+  }
 
-    return objects
+  get objects(): DaggerObjects {
+    return this._objects
   }
 
   get description(): string | undefined {
@@ -70,6 +83,10 @@ export class DaggerModule {
       .join("\n")
   }
 
+  get scalars(): Scalar[] {
+    return this._scalars
+  }
+
   toJSON() {
     return {
       name: this.name,
@@ -82,6 +99,7 @@ export class DaggerModule {
         },
         {},
       ),
+      scalars: this.scalars,
     }
   }
 }

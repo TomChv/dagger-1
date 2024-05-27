@@ -80,7 +80,7 @@ describe("scan static TypeScript", function () {
   for (const test of testCases) {
     it(test.name, async function () {
       const files = await listFiles(`${rootDirectory}/${test.directory}`)
-      const result = scan(files, test.directory)
+      const result = scan(files, test.directory, `${rootDirectory}/${test.directory}`)
       const jsonResult = JSON.stringify(result, null, 2)
       const expected = fs.readFileSync(
         `${rootDirectory}/${test.directory}/expected.json`,
@@ -92,9 +92,9 @@ describe("scan static TypeScript", function () {
   }
 
   describe("Should throw error on invalid module", function () {
-    it("Should throw an error when no files are provided", async function () {
+    it("Should throw an error when no files are provided", function () {
       try {
-        await scan([], "")
+        scan([], "")
         assert.fail("Should throw an error")
       } catch (e: any) {
         assert.equal(e.message, "no files to introspect found")
@@ -105,7 +105,7 @@ describe("scan static TypeScript", function () {
       try {
         const files = await listFiles(`${rootDirectory}/invalid`)
 
-        scan(files, "invalid")
+        scan(files, "invalid", `${rootDirectory}/invalid`)
         assert.fail("Should throw an error")
       } catch (e: any) {
         assert.equal(e.message, "no objects found in the module")
@@ -116,7 +116,7 @@ describe("scan static TypeScript", function () {
       try {
         const files = await listFiles(`${rootDirectory}/noDecorators`)
 
-        scan(files, "noDecorators")
+        scan(files, "noDecorators", `${rootDirectory}/invalid`)
         assert.fail("Should throw an error")
       } catch (e: any) {
         assert.equal(e.message, "no objects found in the module")
