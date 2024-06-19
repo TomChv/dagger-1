@@ -5,6 +5,7 @@ import (
 
 	"github.com/dagger/dagger/core"
 	"github.com/dagger/dagger/dagql"
+	"github.com/dagger/dagger/engine/slog"
 )
 
 type socketSchema struct {
@@ -28,5 +29,7 @@ type socketArgs struct {
 }
 
 func (s *socketSchema) socket(ctx context.Context, parent *core.Query, args socketArgs) (dagql.Instance[*core.Socket], error) {
+	slog.Warn("socket is deprecated, use loadSocketFromID instead")
+
 	return args.ID.Load(ctx, s.srv)
 }
