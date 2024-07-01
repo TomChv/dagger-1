@@ -51,7 +51,7 @@ require (
 	go.opentelemetry.io/proto/otlp v0.19.0
 	golang.org/x/crypto v0.11.0
 	golang.org/x/mod v0.12.0
-	golang.org/x/sync v0.3.0
+	golang.org/x/sync v0.7.0
 	golang.org/x/sys v0.10.0
 	golang.org/x/term v0.10.0
 	google.golang.org/grpc v1.55.0
@@ -241,7 +241,6 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/in-toto/in-toto-golang v0.5.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/klauspost/compress v1.16.5
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/moby/locker v1.0.1 // indirect
 	github.com/moby/patternmatcher v0.5.0 // indirect
